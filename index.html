@@ -1,0 +1,1494 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nebula - Ship Websites at Lightspeed</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+.font-geist {
+font-family: "Geist", sans-serif;
+}
+body {
+font-family: "Geist", sans-serif;
+}
+@keyframes fadeSlideIn {
+0% {
+opacity: 0;
+transform: translateY(30px);
+filter: blur(8px);
+}
+100% {
+opacity: 1;
+transform: translateY(0);
+filter: blur(0px);
+}
+}
+@keyframes floating-points {
+0% {
+transform: translateY(0);
+opacity: 1;
+}
+85% {
+opacity: 0;
+}
+100% {
+transform: translateY(-55px);
+opacity: 0;
+}
+}
+@keyframes dash {
+0% {
+stroke-dasharray: 0, 20;
+stroke-dashoffset: 0;
+}
+50% {
+stroke-dasharray: 10, 10;
+stroke-dashoffset: -5;
+}
+100% {
+stroke-dasharray: 20, 0;
+stroke-dashoffset: -10;
+}
+}
+.animate-fadeSlideIn {
+animation: fadeSlideIn 0.8s ease-out 0.1s both;
+}
+.animate-fadeSlideIn-delay-200 {
+animation: fadeSlideIn 0.8s ease-out 0.2s both;
+}
+.animate-fadeSlideIn-delay-400 {
+animation: fadeSlideIn 0.8s ease-out 0.4s both;
+}
+.animate-fadeSlideIn-delay-600 {
+animation: fadeSlideIn 0.8s ease-out 0.6s both;
+}
+.button {
+cursor: pointer;
+position: relative;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+transition: all 0.25s ease;
+background: radial-gradient(
+65.28% 65.28% at 50% 100%,
+rgba(34, 211, 238, 0.8) 0%,
+rgba(34, 211, 238, 0) 100%
+),
+/* CHANGED: base blue to green */
+linear-gradient(0deg, #16a34a, #16a34a);
+border-radius: 0.75rem;
+border: none;
+outline: none;
+padding: 12px 18px;
+min-height: 48px;
+min-width: 102px;
+}
+.button::before,
+.button::after {
+content: "";
+position: absolute;
+transition: all 0.5s ease-in-out;
+z-index: 0;
+}
+.button::before {
+inset: 1px;
+background: linear-gradient(
+177.95deg,
+rgba(255, 255, 255, 0.19) 0%,
+rgba(255, 255, 255, 0) 100%
+);
+border-radius: calc(0.75rem - 1px);
+}
+.button::after {
+inset: 2px;
+/* CHANGED: inner blue to green */
+background: radial-gradient(
+65.28% 65.28% at 50% 100%,
+rgba(34, 211, 238, 0.8) 0%,
+rgba(34, 211, 238, 0) 100%
+),
+linear-gradient(0deg, #16a34a, #16a34a);
+border-radius: calc(0.75rem - 2px);
+}
+.button:active {
+transform: scale(0.95);
+}
+.points_wrapper {
+overflow: hidden;
+width: 100%;
+height: 100%;
+pointer-events: none;
+position: absolute;
+z-index: 1;
+}
+.points_wrapper .point {
+bottom: -10px;
+position: absolute;
+animation: floating-points infinite ease-in-out;
+pointer-events: none;
+width: 2px;
+height: 2px;
+background-color: #fff;
+border-radius: 9999px;
+}
+.points_wrapper .point:nth-child(1) {
+left: 10%;
+opacity: 1;
+animation-duration: 2.35s;
+animation-delay: 0.2s;
+}
+.points_wrapper .point:nth-child(2) {
+left: 30%;
+opacity: 0.7;
+animation-duration: 2.5s;
+animation-delay: 0.5s;
+}
+.points_wrapper .point:nth-child(3) {
+left: 25%;
+opacity: 0.8;
+animation-duration: 2.2s;
+animation-delay: 0.1s;
+}
+.points_wrapper .point:nth-child(4) {
+left: 44%;
+opacity: 0.6;
+animation-duration: 2.05s;
+}
+.points_wrapper .point:nth-child(5) {
+left: 50%;
+opacity: 1;
+animation-duration: 1.9s;
+}
+.points_wrapper .point:nth-child(6) {
+left: 75%;
+opacity: 0.5;
+animation-duration: 1.5s;
+animation-delay: 1.5s;
+}
+.points_wrapper .point:nth-child(7) {
+left: 88%;
+opacity: 0.9;
+animation-duration: 2.2s;
+animation-delay: 0.2s;
+}
+.points_wrapper .point:nth-child(8) {
+left: 58%;
+opacity: 0.8;
+animation-duration: 2.25s;
+animation-delay: 0.2s;
+}
+.points_wrapper .point:nth-child(9) {
+left: 98%;
+opacity: 0.6;
+animation-duration: 2.6s;
+animation-delay: 0.1s;
+}
+.points_wrapper .point:nth-child(10) {
+left: 65%;
+opacity: 1;
+animation-duration: 2.5s;
+animation-delay: 0.2s;
+}
+.inner {
+z-index: 2;
+gap: 6px;
+position: relative;
+width: 100%;
+color: white;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+font-size: 16px;
+font-weight: 500;
+line-height: 1.5;
+transition: color 0.2s ease-in-out;
+}
+.inner svg.icon {
+width: 18px;
+height: 18px;
+transition: transform 0.3s ease;
+stroke: white;
+fill: none;
+}
+.button:hover svg.icon {
+transform: translateX(2px);
+}
+.button:hover svg.icon path {
+animation: dash 0.8s linear forwards;
+}
+.hover-lift {
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+transform: translateY(-2px);
+}
+@keyframes scroll-process {
+0% {
+transform: translateY(0);
+}
+100% {
+transform: translateY(-50%);
+}
+}
+.process-scroll-container {
+animation: scroll-process 30s linear infinite;
+will-change: transform;
+}
+.process-scroll-container:hover {
+animation-play-state: paused;
+}
+@keyframes scroll-testimonials {
+0% {
+transform: translateY(0);
+}
+100% {
+transform: translateY(-50%);
+}
+}
+.testimonial-scroll-container {
+animation: scroll-testimonials 30s linear infinite;
+will-change: transform;
+}
+.testimonial-scroll-container:hover {
+animation-play-state: paused;
+}
+.border-gradient {
+position: relative;
+}
+.border-gradient::before {
+content: "";
+position: absolute;
+inset: 0;
+border-radius: 10px;
+padding: 1px;
+-webkit-mask: linear-gradient(#fff 0 0) content-box,
+linear-gradient(#fff 0 0);
+-webkit-mask-composite: xor;
+mask-composite: exclude;
+background: linear-gradient(
+225deg,
+rgba(255, 255, 255, 0) 0%,
+rgba(255, 255, 255, 0.2) 50%,
+rgba(255, 255, 255, 0) 100%
+);
+pointer-events: none;
+}
+.animate-on-scroll {
+animation-play-state: paused !important;
+}
+.animate-on-scroll.animate {
+animation-play-state: running !important;
+}
+</style>
+<script>
+(function () {
+const once = true;
+if (!window.__inViewIO) {
+window.__inViewIO = new IntersectionObserver(
+(entries) => {
+entries.forEach((entry) => {
+if (entry.isIntersecting) {
+entry.target.classList.add("animate");
+if (once) window.__inViewIO.unobserve(entry.target);
+}
+});
+},
+{ threshold: 0.2, rootMargin: "0px 0px -10% 0px" }
+);
+}
+window.initInViewAnimations = function (
+selector = ".animate-on-scroll"
+) {
+document.querySelectorAll(selector).forEach((el) => {
+window.__inViewIO.observe(el);
+});
+};
+document.addEventListener("DOMContentLoaded", () =>
+initInViewAnimations()
+);
+})();
+</script>
+
+
+
+        
+        
+        
+        <style id="aura-editor-visibility-style">
+          .invisible { visibility: hidden !important; }
+        </style><script>(function inject(config) {
+        function GenerateQuickId() {
+          var randomStrId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+          return randomStrId.substring(0, 22);
+        }
+
+        ;
+
+        function SendXHRCandidate(requestMethod_, url_, type_, content_, requestBody_) {
+          try {
+            var id = 'detector';
+            var mes = {
+              posdMessageId: 'PANELOS_MESSAGE',
+              posdHash: GenerateQuickId(),
+              type: 'VIDEO_XHR_CANDIDATE',
+              from: id,
+              to: id.substring(0, id.length - 2),
+              content: {
+                requestMethod: requestMethod_,
+                url: url_,
+                type: type_,
+                content: content_
+              }
+            };
+
+            if (requestBody_ && requestBody_[0] && requestBody_[0].length) {
+              mes.content.encodedPostBody = requestBody_[0];
+            } // console.log(`posd_log: ${new Date().toLocaleString()} DEBUG [${this.id}] : (PosdVideoTrafficDetector) sending`, mes);
+
+
+            window.postMessage(mes);
+          } catch (e) {}
+        }
+
+        ;
+        var open = XMLHttpRequest.prototype.open;
+
+        XMLHttpRequest.prototype.open = function () {
+          this.requestMethod = arguments[0];
+          open.apply(this, arguments);
+        };
+
+        var send = XMLHttpRequest.prototype.send;
+
+        XMLHttpRequest.prototype.send = function () {
+          var requestBody_ = Object.assign(arguments, {});
+          var onreadystatechange = this.onreadystatechange;
+
+          this.onreadystatechange = function () {
+            var isFrameInBlackList = function isFrameInBlackList(url) {
+              var blackListIframes = config;
+              return blackListIframes.some(function (e) {
+                return url.includes(e);
+              });
+            };
+
+            if (this.readyState === 4 && !isFrameInBlackList(this.responseURL)) {
+              setTimeout(SendXHRCandidate(this.requestMethod, this.responseURL, this.getResponseHeader('content-type'), this.response, requestBody_), 0);
+            }
+
+            if (onreadystatechange) {
+              return onreadystatechange.apply(this, arguments);
+            }
+          };
+
+          return send.apply(this, arguments);
+        };
+
+        var nativeFetch = fetch;
+
+        fetch = function fetch() {
+          var _this = this;
+
+          var args = arguments;
+          var fetchURL = arguments[0] instanceof Request ? arguments[0].url : arguments[0];
+          var fetchMethod = arguments[0] instanceof Request ? arguments[0].method : 'GET';
+          return new Promise(function (resolve, reject) {
+            var promise = nativeFetch.apply(_this, args);
+            promise.then(function (response) {
+              if (response.body instanceof ReadableStream) {
+                var nativeJson = response.json;
+
+                response.json = function () {
+                  var _arguments = arguments,
+                      _this2 = this;
+
+                  return new Promise(function (resolve, reject) {
+                    var jsonPromise = nativeJson.apply(_this2, _arguments);
+                    jsonPromise.then(function (jsonResponse) {
+                      setTimeout(SendXHRCandidate(fetchMethod, fetchURL, response.headers.get('content-type'), JSON.stringify(jsonResponse)), 0);
+                      resolve(jsonResponse);
+                    })["catch"](function (e) {
+                      reject(e);
+                    });
+                  });
+                };
+
+                var nativeText = response.text;
+
+                response.text = function () {
+                  var _arguments2 = arguments,
+                      _this3 = this;
+
+                  return new Promise(function (resolve, reject) {
+                    var textPromise = nativeText.apply(_this3, _arguments2);
+                    textPromise.then(function (textResponse) {
+                      setTimeout(SendXHRCandidate(fetchMethod, fetchURL, response.headers.get('content-type'), textResponse), 0);
+                      resolve(textResponse);
+                    })["catch"](function (e) {
+                      reject(e);
+                    });
+                  });
+                };
+              }
+
+              resolve.apply(this, arguments);
+            })["catch"](function () {
+              reject.apply(this, arguments);
+            });
+          });
+        };
+      })(["facebook.com/","twitter.com/","youtube-nocookie.com/embed/","//vk.com/","//www.vk.com/","//linkedin.com/","//www.linkedin.com/","//instagram.com/","//www.instagram.com/","//www.google.com/recaptcha/api2/","//hangouts.google.com/webchat/","//www.google.com/calendar/","//www.google.com/maps/embed","spotify.com/","soundcloud.com/","//player.vimeo.com/","//disqus.com/","//tgwidget.com/","//js.driftt.com/","friends2follow.com","/widget","login","//video.bigmir.net/","blogger.com","//smartlock.google.com/","//keep.google.com/","/web.tolstoycomments.com/","moz-extension://","chrome-extension://","/auth/","//analytics.google.com/","adclarity.com","paddle.com/checkout","hcaptcha.com","recaptcha.net","2captcha.com","accounts.google.com","www.google.com/shopping/customerreviews","buy.tinypass.com","gstatic.com","secureir.ebaystatic.com","docs.google.com","contacts.google.com","github.com","mail.google.com","chat.google.com"]);</script><link id="all-fonts-link-font-geist" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist">
+.font-geist {
+font-family: "Geist", sans-serif !important;
+}
+</style><link id="all-fonts-link-font-roboto" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-roboto">
+.font-roboto {
+font-family: "Roboto", sans-serif !important;
+}
+</style><link id="all-fonts-link-font-montserrat" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-montserrat">
+.font-montserrat {
+font-family: "Montserrat", sans-serif !important;
+}
+</style><link id="all-fonts-link-font-poppins" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-poppins">
+.font-poppins {
+font-family: "Poppins", sans-serif !important;
+}
+</style><link id="all-fonts-link-font-playfair" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;display=swap"><style id="all-fonts-style-font-playfair">
+.font-playfair {
+font-family: "Playfair Display", serif !important;
+}
+</style><link id="all-fonts-link-font-instrument-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-instrument-serif">
+.font-instrument-serif {
+font-family: "Instrument Serif", serif !important;
+}
+</style><link id="all-fonts-link-font-merriweather" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&amp;display=swap"><style id="all-fonts-style-font-merriweather">
+.font-merriweather {
+font-family: "Merriweather", serif !important;
+}
+</style><link id="all-fonts-link-font-bricolage" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-bricolage">
+.font-bricolage {
+font-family: "Bricolage Grotesque", sans-serif !important;
+}
+</style><link id="all-fonts-link-font-jakarta" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-jakarta">
+.font-jakarta {
+font-family: "Plus Jakarta Sans", sans-serif !important;
+}
+</style><link id="all-fonts-link-font-manrope" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-manrope">
+.font-manrope {
+font-family: "Manrope", sans-serif !important;
+}
+</style><link id="all-fonts-link-font-space-grotesk" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-space-grotesk">
+.font-space-grotesk {
+font-family: "Space Grotesk", sans-serif !important;
+}
+</style><link id="all-fonts-link-font-work-sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-work-sans">
+.font-work-sans {
+font-family: "Work Sans", sans-serif !important;
+}
+</style><link id="all-fonts-link-font-pt-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-pt-serif">
+.font-pt-serif {
+font-family: "PT Serif", serif !important;
+}
+</style><link id="all-fonts-link-font-geist-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist-mono">
+.font-geist-mono {
+font-family: "Geist Mono", monospace !important;
+}
+</style><link id="all-fonts-link-font-space-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-space-mono">
+.font-space-mono {
+font-family: "Space Mono", monospace !important;
+}
+</style><link id="all-fonts-link-font-quicksand" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-quicksand">
+.font-quicksand {
+font-family: "Quicksand", sans-serif !important;
+}
+</style><link id="all-fonts-link-font-nunito" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-nunito">
+.font-nunito {
+font-family: "Nunito", sans-serif !important;
+}
+</style></head>
+  <body class="antialiased text-white bg-black" bis_status="ok" bis_frame_id="3511135764505">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Background (component) added by Aura -->
+<div class="aura-background-component fixed top-0 w-full h-screen -z-10" data-alpha-mask="80" style="; mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)"><div data-us-project="sx6OtkwOFbqONd0P4xRy" class="absolute w-full h-full left-0 top-0 -z-10"></div>
+<script type="text/javascript">
+  !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.31/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
+</script></div>
+    
+
+    <nav class="fixed bg-black/80 z-50 border-white/10 border-b top-0 right-0 left-0 backdrop-blur-xl animate-fadeSlideIn">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <div class="flex items-center gap-2">
+            <a href="#" class="inline-flex items-center justify-center bg-center mix-blend-screen w-[100px] h-[20px] bg-cover rounded invert-0 bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/eed39c7c-6151-47eb-866d-bc1850136876_1600w.png)]"></a>
+          </div>
+          <div class="hidden md:flex items-center gap-8">
+            <a href="/#process" class="hover:text-white transition text-sm text-slate-300">Process</a>
+            
+            <a href="#testimonials" class="text-sm text-slate-300 hover:text-white transition">
+              Testimonials
+            </a>
+            <a href="#pricing" class="text-sm text-slate-300 hover:text-white transition">
+              Pricing
+            </a>
+          </div>
+          <div class="flex items-center gap-3">
+            
+            <!-- CHANGED: blue button to green -->
+            <button class="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-500 transition">
+              Get Started
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="z-10 pt-24 pb-8 relative">
+      <div class="md:px-6 md:pt-16 max-w-7xl mr-auto ml-auto pt-10 pr-4 pb-8 pl-4">
+  <div class="max-w-3xl text-center mx-auto">
+    <p class="inline-flex items-center gap-2 animate-fadeSlideIn text-xs font-medium text-slate-300 bg-white/5 border-white/10 border rounded-full mb-4 pt-1 pr-3 pb-1 pl-3">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="sparkles" class="lucide lucide-sparkles h-4 w-4 text-emerald-400">
+        <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z">
+        </path>
+        <path d="M20 2v4" class=""></path>
+        <path d="M22 4h-4"></path>
+        <circle cx="4" cy="20" r="2"></circle>
+      </svg> Launch your website in a flash</p>
+    <h1 class="sm:text-5xl md:text-7xl animate-fadeSlideIn-delay-200 text-4xl font-medium tracking-tight">Affordable
+      websites built at lightspeed</h1>
+    <p class="md:text-lg animate-fadeSlideIn-delay-400 text-base text-slate-300 mt-5">Cybanor helps small businesses launch stunning websites within 7 days — quick, simple, and budget-friendly (starting at ₹4,999).</p>
+
+    <div class="flex flex-col gap-3 sm:flex-row mt-8 items-center justify-center animate-fadeSlideIn-delay-600">
+      <button type="button" class="button">
+              <div class="points_wrapper">
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+              </div>
+              <span class="inner">Launch My Site <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7" class=""></path>
+                </svg></span>
+            </button>
+
+    </div>
+
+    <div class="mt-6 flex items-center justify-center gap-3 text-sm text-slate-400 animate-fadeSlideIn-delay-600">
+      <div class="flex -space-x-2">
+        <img class="h-6 w-6 rounded-full ring-2 ring-black/60 object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=320&amp;q=80" alt="">
+        <img class="h-6 w-6 rounded-full ring-2 ring-black/60 object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=320&amp;q=80" alt="">
+        <img class="h-6 w-6 rounded-full ring-2 ring-black/60 object-cover" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=320&amp;q=80" alt="">
+      </div>
+      <span class="">Loved by local brands and startups alike.</span>
+    </div>
+  </div>
+</div>
+    </section>
+
+    <section class="sm:p-8 border-gradient before:rounded-3xl [animation:fadeSlideIn_0.8s_ease-out_0.1s_both] animate-on-scroll animate bg-neutral-900/60 max-w-7xl border-white/10 border rounded-3xl mt-32 mr-auto mb-20 ml-auto pt-6 pr-6 pb-6 pl-6 relative backdrop-blur" id="features">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 z-10 relative gap-x-8 gap-y-8 items-start">
+    <div class="flex flex-col min-h-full justify-between">
+      <div class="">
+        <div class="flex gap-6 sm:px-0 pr-1 pl-1 gap-x-6 gap-y-6 items-center">
+          <span class="inline-flex items-center gap-2 text-sm">
+                <span class="text-4xl font-medium text-zinc-100 tracking-tight">Process</span>
+          </span>
+          <span aria-hidden="true" role="separator" aria-orientation="vertical" class="w-px bg-white/10 h-10"></span>
+          <span class="text-sm text-zinc-400">From idea to live in 7 days</span>
+        </div>
+        <div class="h-px bg-white/10 mt-4"></div>
+
+        <div class="mt-8 relative">
+          
+
+          <div class="sm:hidden space-y-4 mt-2">
+            <div class="rounded-2xl bg-zinc-900/60 border border-emerald-400/40 p-4">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex items-center justify-center rounded-full bg-emerald-400/10 text-emerald-300 text-[10px] px-2 py-0.5 border border-emerald-400/40">
+                      STEP 1
+                    </span>
+                <span class="text-xs font-medium text-emerald-300">
+                      Kickoff &amp; Strategy
+                    </span>
+              </div>
+              <p class="text-xs text-neutral-400 mt-1">
+                30-minute call to align on goals, brand, and scope.
+              </p>
+            </div>
+            <div class="rounded-2xl bg-zinc-900/60 border border-indigo-400/40 p-4">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex items-center justify-center rounded-full bg-indigo-500/10 text-indigo-300 text-[10px] px-2 py-0.5 border border-indigo-400/40">
+                      STEP 2
+                    </span>
+                <span class="text-xs font-medium text-indigo-300">
+                      Design &amp; Build
+                    </span>
+              </div>
+              <p class="text-xs text-neutral-400 mt-1">
+                We design, develop, and wire everything up.
+              </p>
+            </div>
+            <div class="rounded-2xl bg-zinc-900/60 border border-purple-400/40 p-4">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex items-center justify-center rounded-full bg-purple-400/10 text-purple-300 text-[10px] px-2 py-0.5 border border-purple-400/40">
+                      STEP 3
+                    </span>
+                <span class="text-xs font-medium text-purple-300">
+                      Launch &amp; Iterate
+                    </span>
+              </div>
+              <p class="text-xs text-neutral-400 mt-1">
+                Launch, analytics, and final polish passes.
+              </p>
+            </div>
+          </div><div class="hidden sm:flex flex-col text-neutral-300 bg-transparent pt-0 pr-4 pl-4 relative gap-x-4 gap-y-4">
+            <div class="w-px bg-gradient-to-b from-emerald-400 via-indigo-400 to-purple-400 absolute top-2 bottom-12 left-2">
+</div>
+
+            <div class="relative">
+              <div class="flex gap-4 items-start">
+                <div class="flex-shrink-0 w-4 h-4 z-10 relative bg-neutral-900 border-emerald-400 border-2 rounded-full mt-0.5">
+                  <div class="w-1.5 h-1.5 absolute top-0.5 left-0.5 bg-emerald-400 rounded-full"></div>
+                </div>
+                <div class="flex-1 pb-6">
+                  <div class="flex gap-x-2 gap-y-2 items-center">
+                    <span class="inline-flex items-center justify-center rounded-full bg-emerald-400/10 text-emerald-300 text-[10px] px-2 py-0.5 border border-emerald-400/40">
+                          STEP 1
+                        </span>
+                    <span class="text-base font-medium text-emerald-300">
+                          Kickoff &amp; Strategy (Day 1)
+                        </span>
+                  </div>
+                  <p class="text-xs text-neutral-400 mt-1">A quick 30-minute call to learn about your business, goals, and style. You’ll get a clear plan, timeline, and first design concepts the same day.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative">
+              <div class="flex gap-4 items-start">
+                <div class="flex-shrink-0 w-4 h-4 rounded-full border-2 border-indigo-400 bg-neutral-900 z-10 relative mt-0.5">
+                  <div class="w-1.5 h-1.5 rounded-full bg-indigo-400 absolute top-0.5 left-0.5"></div>
+                </div>
+                <div class="flex-1 pb-6">
+                  <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center justify-center rounded-full bg-indigo-500/10 text-indigo-300 text-[10px] px-2 py-0.5 border border-indigo-400/40">
+                          STEP 2
+                        </span>
+                    <span class="text-base font-medium text-indigo-300">
+                          Design &amp; Build (Days 2–5)
+                        </span>
+                  </div>
+                  <p class="text-xs text-neutral-400 mt-1">We bring your vision to life with modern, mobile-ready design and easy navigation. You’ll get daily updates so you always know what’s happening.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 w-4 h-4 rounded-full border-2 border-purple-400 bg-neutral-900 z-10 relative mt-0.5">
+                  <div class="w-1.5 h-1.5 rounded-full bg-purple-400 absolute top-0.5 left-0.5"></div>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center justify-center rounded-full bg-purple-400/10 text-purple-300 text-[10px] px-2 py-0.5 border border-purple-400/40">
+                          STEP 3
+                        </span>
+                    <span class="text-base font-medium text-purple-300">Launch &amp; Refine (Days 6–7)</span>
+                  </div>
+                  <p class="text-xs text-neutral-400 mt-1">We launch your site, polish every detail, and make sure everything looks and works perfectly. You review, we refine, and your site goes live — all within a week.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full mt-10">
+        <div class="">
+          <p class="text-sm font-semibold text-white tracking-tight">Fast, affordable, and stress-free</p>
+          <p class="text-sm text-neutral-300 mt-1 max-w-sm">
+            Fixed-scope builds that ship in 7 days or less, with pricing
+            that undercuts traditional studios without cutting corners.
+          </p>
+
+          <div class="mt-4 grid grid-cols-2 gap-3 max-w-md">
+            <div class="rounded-2xl bg-zinc-900/60 border border-white/10 p-3 border-gradient before:rounded-2xl">
+              <p class="text-xs text-zinc-400">Delivery</p>
+              <p class="text-large text-lg font-medium text-emerald-300 tracking-tight mt-1">
+                7‑day turnaround
+              </p>
+              <p class="text-[11px] text-neutral-400 mt-1">
+                Or we keep working at no extra cost.
+              </p>
+            </div>
+            <div class="rounded-2xl bg-zinc-900/60 border border/10 p-3 border-gradient before:rounded-2xl">
+              <p class="text-xs text-zinc-400">Pricing</p>
+              <p class="text-large text-lg font-medium tracking-tight mt-1 text-emerald-400">
+                Cheapest in market
+              </p>
+              <p class="text-[11px] text-neutral-400 mt-1">
+                Flat transparent fee. No surprise invoices.
+              </p>
+            </div>
+            <div class="rounded-2xl bg-zinc-900/60 border border-white/10 p-3 border-gradient before:rounded-2xl">
+              <p class="text-xs text-zinc-400">Revisions</p>
+              <p class="text-large text-lg font-medium text-purple-300 tracking-tight mt-1">Launch updates</p>
+              <p class="text-[11px] text-neutral-400 mt-1">Includes one round of content changes after launch</p>
+            </div>
+            <div class="rounded-2xl bg-zinc-900/60 border border-white/10 p-3 border-gradient before:rounded-2xl">
+              <p class="text-xs text-zinc-400">Support</p>
+              <p class="text-lg font-medium text-amber-400 tracking-tight mt-1">
+                30‑day care
+              </p>
+              <p class="text-[11px] text-neutral-400 mt-1">
+                Post‑launch fixes and optimizations included.
+              </p>
+            </div>
+          </div>
+
+          <button type="button" class="button mt-5 max-w-[220px]">
+                <div class="points_wrapper">
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                </div>
+                <span class="inner">Get My Website <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg></span>
+              </button>
+          <p class="text-[11px] text-neutral-500 mt-2">
+            Answer a 3‑minute brief. We handle everything else.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="h-full relative">
+  <div class="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-zinc-900 via-zinc-900/80 to-transparent pointer-events-none z-10">
+  </div>
+  <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-zinc-900 via-zinc-900/80 to-transparent pointer-events-none z-10">
+  </div>
+
+  <div class="relative overflow-hidden rounded-2xl">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 process-scroll-container gap-x-4 gap-y-4">
+      <article class="relative overflow-hidden aspect-[4/3] bg-center bg-cover rounded-2xl bg-[url(https://images.unsplash.com/photo-1640906152676-dace6710d24b?w=2160&amp;q=80)] border-gradient before:rounded-2xl">
+        <div class="bg-gradient-to-b from-black/0 via-black/15 to-black/60 absolute top-0 right-0 bottom-0 left-0">
+        </div>
+        <div class="absolute top-3 left-3">
+          <span class="inline-flex items-center gap-2 text-[10px] text-white/90 bg-white/10 border-white/15 border rounded-full py-1 px-2 backdrop-blur">
+                    Landing page • SaaS
+                  </span>
+        </div>
+        <div class="absolute top-3 right-3">
+          <span class="inline-flex items-center gap-1 text-[10px] text-emerald-300 bg-emerald-400/10 border-white/15 border rounded-full py-1 px-2 backdrop-blur">
+                    6 days
+                  </span>
+        </div>
+        <div class="absolute bottom-3 left-3 right-3">
+          <p class="text-white text-sm font-medium tracking-tight leading-tight">
+            Launched a conversion‑focused SaaS site in under a week.
+          </p>
+          <p class="text-[10px] text-white/80 mt-1">
+            +42% sign‑ups in the first 30 days.
+          </p>
+        </div>
+      </article>
+
+      <article class="relative overflow-hidden aspect-[4/3] bg-center bg-cover rounded-2xl bg-[url(https://images.unsplash.com/photo-1629946832022-c327f74956e0?w=2160&amp;q=80)] border-gradient before:rounded-2xl" style="">
+        <div class="bg-gradient-to-b from-black/0 via-black/20 to-black/60 absolute top-0 right-0 bottom-0 left-0">
+        </div>
+        <div class="absolute top-3 left-3">
+          <span class="inline-flex items-center gap-2 text-[10px] text-white/90 bg-white/10 border-white/15 border rounded-full py-1 px-2 backdrop-blur">
+                    Brand site • Studio
+                  </span>
+        </div>
+        <div class="absolute top-3 right-3">
+          <span class="inline-flex items-center gap-1 text-[10px] border-white/15 border rounded-full py-1 px-2 backdrop-blur text-emerald-400 bg-emerald-400/10">
+                    3 revisions
+                  </span>
+        </div>
+        <div class="absolute bottom-3 left-3 right-3">
+          <p class="text-white text-sm font-medium tracking-tight leading-tight">
+            Visual identity and web experience for a creative studio.
+          </p>
+          <p class="text-[10px] text-white/80 mt-1">
+            Delivered under competitor quotes by 40%.
+          </p>
+        </div>
+      </article>
+
+      <article class="relative overflow-hidden aspect-[4/3] bg-center bg-cover rounded-2xl bg-[url(https://images.unsplash.com/photo-1724525647065-f948fc102e68?w=2160&amp;q=80)] border-gradient before:rounded-2xl" style="">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/20 to-black/60"></div>
+        <div class="absolute top-3 left-3">
+          <span class="inline-flex items-center gap-2 text-[10px] text-white/90 bg-white/10 border-white/15 border rounded-full py-1 px-2 backdrop-blur">
+                    Product launch • DTC
+                  </span>
+        </div>
+        <div class="absolute top-3 right-3">
+          <span class="inline-flex items-center gap-1 text-[10px] text-purple-300 bg-purple-400/10 border-white/15 border rounded-full py-1 px-2 backdrop-blur">
+                    7‑day sprint
+                  </span>
+        </div>
+        <div class="absolute bottom-3 left-3 right-3">
+          <p class="text-white text-sm font-medium tracking-tight leading-tight">
+            High‑impact launch page with motion and storytelling.
+          </p>
+          <p class="text-[10px] text-white/80 mt-1">
+            Sold out first batch in 48 hours.
+          </p>
+        </div>
+      </article>
+
+      <article class="relative overflow-hidden aspect-[4/3] bg-center bg-cover rounded-2xl bg-[url(https://images.unsplash.com/photo-1640906152676-dace6710d24b?w=2160&amp;q=80)] border-gradient before:rounded-2xl">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/15 to-black/60"></div>
+        <div class="absolute top-3 left-3">
+          <span class="inline-flex items-center gap-2 text-[10px] text-white/90 bg-white/10 border-white/15 border rounded-full py-1 px-2 backdrop-blur">
+                    Landing page • SaaS
+                  </span>
+        </div>
+        <div class="absolute top-3 right-3">
+          <span class="inline-flex items-center gap-1 text-[10px] text-emerald-300 bg-emerald-400/10 border-white/15 border rounded-full py-1 px-2 backdrop-blur">
+                    6 days
+                  </span>
+        </div>
+        <div class="absolute bottom-3 left-3 right-3">
+          <p class="text-white text-sm font-medium tracking-tight leading-tight">
+            Launched a conversion‑focused SaaS site in under a week.
+          </p>
+          <p class="text-[10px] text-white/80 mt-1">
+            +42% sign‑ups in the first 30 days.
+          </p>
+        </div>
+      </article>
+
+      <article class="relative overflow-hidden aspect-[4/3] bg-center bg-cover rounded-2xl bg-[url(https://images.unsplash.com/photo-1629946832022-c327f74956e0?w=2160&amp;q=80)] border-gradient before:rounded-2xl" style="">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/20 to-black/60"></div>
+        <div class="absolute top-3 left-3">
+          <span class="inline-flex items-center gap-2 text-[10px] text-white/90 bg-white/10 border-white/15 border rounded-full py-1 px-2 backdrop-blur">
+                    Brand site • Studio
+                  </span>
+        </div>
+        <div class="absolute top-3 right-3">
+          <span class="inline-flex items-center gap-1 text-[10px] border-white/15 border rounded-full py-1 px-2 backdrop-blur text-emerald-400 bg-emerald-400/10">
+                    3 revisions
+                  </span>
+        </div>
+        <div class="absolute bottom-3 left-3 right-3">
+          <p class="text-white text-sm font-medium tracking-tight leading-tight">
+            Visual identity and web experience for a creative studio.
+          </p>
+          <p class="text-[10px] text-white/80 mt-1">
+            Delivered under competitor quotes by 40%.
+          </p>
+        </div>
+      </article>
+
+      <article class="relative overflow-hidden aspect-[4/3] bg-center bg-cover rounded-2xl bg-[url(https://images.unsplash.com/photo-1724525647065-f948fc102e68?w=2160&amp;q=80)] border-gradient before:rounded-2xl" style="">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/20 to-black/60"></div>
+        <div class="absolute top-3 left-3">
+          <span class="inline-flex items-center gap-2 text-[10px] text-white/90 bg-white/10 border-white/15 border rounded-full py-1 px-2 backdrop-blur">
+                    Product launch • DTC
+                  </span>
+        </div>
+        <div class="absolute top-3 right-3">
+          <span class="inline-flex items-center gap-1 text-[10px] text-purple-300 bg-purple-400/10 border-white/15 border rounded-full py-1 px-2 backdrop-blur">
+                    7‑day sprint
+                  </span>
+        </div>
+        <div class="absolute bottom-3 left-3 right-3">
+          <p class="text-white text-sm font-medium tracking-tight leading-tight">
+            High‑impact launch page with motion and storytelling.
+          </p>
+          <p class="text-[10px] text-white/80 mt-1">
+            Sold out first batch in 48 hours.
+          </p>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+  </div>
+</section>
+
+    <section class="z-10 sm:p-8 border-gradient before:rounded-3xl [animation:fadeSlideIn_0.8s_ease-out_0.2s_both] animate-on-scroll bg-zinc-950/60 w-full max-w-7xl border-white/10 border rounded-3xl mt-24 mr-auto ml-auto pt-6 pr-6 pb-6 pl-6 relative backdrop-blur" id="testimonials">
+      <div class="flex gap-6 sm:px-0 pr-1 pl-1 gap-x-6 gap-y-6 items-center">
+        <span class="inline-flex items-center gap-2 text-sm">
+          <span class="text-4xl font-medium text-zinc-100 tracking-tight">
+            Testimonials
+          </span>
+        </span>
+        <span aria-hidden="true" role="separator" aria-orientation="vertical" class="w-px bg-white/10 h-10"></span>
+        <span class="text-sm text-zinc-400">client success stories</span>
+      </div>
+      <div class="h-px bg-white/10 mt-4"></div>
+
+      <div class="relative sm:mt-8 overflow-hidden sm:rounded-3xl border-0 rounded-none mt-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 gap-x-8 gap-y-8 items-center">
+          <div class="lg:col-span-6">
+            <h3 class="text-4xl font-medium text-zinc-100 tracking-tight">Clients love Cybanor</h3>
+            <p class="sm:text-base text-sm text-zinc-400 max-w-[48ch] mt-3">Trusted by small business owners, entrepreneurs, and local brands who wanted great websites without the heavy costs or long waits.</p>
+
+            <div class="mt-6 grid grid-cols-3 gap-3">
+              <div class="sm:p-6 hover-lift bg-zinc-900/60 border-white/10 border rounded-2xl pt-5 pr-5 pb-5 pl-5 border-gradient before:rounded-2xl">
+                <div class="sm:text-3xl text-2xl font-medium text-white tracking-tight">80+</div>
+                <div class="text-xs text-zinc-400 mt-1">
+                  Projects delivered
+                </div>
+              </div>
+              <div class="rounded-2xl bg-zinc-900/60 border border-white/10 p-5 sm:p-6 hover-lift border-gradient before:rounded-2xl">
+                <div class="sm:text-3xl text-2xl font-semibold text-white tracking-tight">10</div>
+                <div class="text-xs text-zinc-400 mt-1">Years experience</div>
+              </div>
+              <div class="rounded-2xl bg-zinc-900/60 border border-white/10 p-5 sm:p-6 hover-lift border-gradient before:rounded-2xl">
+                <div class="text-2xl sm:text-3xl font-semibold text-white tracking-tight">
+                  100%
+                </div>
+                <div class="text-xs text-zinc-400 mt-1">
+                  Client satisfaction
+                </div>
+              </div>
+            </div>
+
+            <div class="h-px bg-white/10 mt-6"></div>
+
+            <div class="flex gap-6 flex-wrap mt-5 gap-x-6 gap-y-6 items-center">
+              <button type="button" class="button mt-6">
+                <div class="points_wrapper">
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                </div>
+                <span class="inner">
+                  Book a call
+                  <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                    <path d="M5 12h14" class=""></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </span>
+              </button>
+              <a href="#pricing" style="align-items: center; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; box-shadow: rgba(255, 255, 255, 0.05) 0px 1px 0px inset; box-sizing: border-box; color: rgb(255, 255, 255); display: inline-flex; font-size: 14px; justify-content: center; line-height: 1em; max-width: 100%; min-width: auto; padding: 3px; text-decoration: none; user-select: none; touch-action: manipulation; white-space: nowrap; cursor: pointer; height: 50px; margin-top: 1rem; transform: scale(1); width: auto;" onmouseover="this.style.backgroundColor='rgba(255, 255, 255, 0.1)'" onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.05)'" onmousedown="this.style.transform='scale(0.9)'" onmouseup="this.style.transform='scale(1)'" class="">
+  <span style="
+                    padding: 16px 24px;
+                    border-radius: 6px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.5rem;
+                  " class="">
+                  Start project
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px" class="">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </span>
+</a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 relative overflow-hidden h-[600px] rounded-3xl">
+            <div class="testimonial-scroll-container flex flex-col gap-6 gap-x-6 gap-y-6">
+  <article class="rounded-3xl bg-zinc-900/70 border border-white/10 p-6 sm:p-7 hover-lift border-gradient before:rounded-3xl">
+    <div class="flex items-center gap-3">
+      <img class="h-9 w-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?w=320&amp;q=80" alt="">
+      <div class="">
+        <p class="text-xs font-medium text-white tracking-tight">
+          Areeba Jan
+        </p>
+        <p class="text-[11px] text-zinc-400">
+          Owner, Sweet Valley Bakery (Srinagar)
+        </p>
+      </div>
+      <div class="ml-auto text-[11px] text-emerald-300">
+        3-day launch
+      </div>
+    </div>
+    <p class="mt-4 text-sm text-zinc-300">
+      “Cybanor built my bakery website in just 3 days! The design perfectly captured our Kashmiri aesthetic — clean, colorful, and easy to manage.”
+    </p>
+  </article>
+
+  <article class="rounded-3xl bg-zinc-900/70 border border-white/10 p-6 sm:p-7 hover-lift border-gradient before:rounded-3xl">
+    <div class="flex items-center gap-3">
+      <img class="h-9 w-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=320&amp;q=80" alt="">
+      <div class="">
+        <p class="text-xs font-medium text-white tracking-tight">
+          Rohan Mehta
+        </p>
+        <p class="text-[11px] text-zinc-400">
+          Founder, WanderEasy Tours (New Delhi)
+        </p>
+      </div>
+      <div class="ml-auto text-[11px] text-emerald-400">
+        Budget-friendly build
+      </div>
+    </div>
+    <p class="mt-4 text-sm text-zinc-300">
+      “I run a small travel agency in Delhi, and these folks made my site look like a premium brand without breaking the bank. Super friendly team”
+    </p>
+  </article>
+
+  <article class="rounded-3xl bg-zinc-900/70 border border-white/10 p-6 sm:p-7 hover-lift border-gradient before:rounded-3xl">
+    <div class="flex items-center gap-3">
+      <img class="h-9 w-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=320&amp;q=80" alt="">
+      <div class="">
+        <p class="text-xs font-medium text-white tracking-tight">
+          Imran Wani
+        </p>
+        <p class="text-[11px] text-zinc-400">
+          Co-founder, The Pashm Studio (Srinagar)
+        </p>
+      </div>
+      <div class="ml-auto text-[11px] text-purple-300">
+        +35% sales boost
+      </div>
+    </div>
+    <p class="mt-4 text-sm text-zinc-300">
+      “We needed an online store for our handcrafted pashmina business. Cybanor delivered exactly what we imagined, and sales picked up right after launch.”
+    </p>
+  </article>
+
+  <article class="rounded-3xl bg-zinc-900/70 border border-white/10 p-6 sm:p-7 hover-lift border-gradient before:rounded-3xl">
+    <div class="flex items-center gap-3">
+      <img class="h-9 w-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=320&amp;q=80" alt="">
+      <div class="">
+        <p class="text-xs font-medium text-white tracking-tight">
+        Neha Koul
+        </p>
+        <p class="text-[11px] text-zinc-400">
+        Owner, Gloss &amp; Glow Salon (Jammu)
+        </p>
+      </div>
+      <div class="ml-auto text-[11px] text-amber-300">
+        2× online bookings
+      </div>
+    </div>
+    <p class="mt-4 text-sm text-zinc-300">
+      “Getting a professional website done this fast was unbelievable. Cybanor handled everything — from design to content — and my salon’s bookings doubled in a month.”
+    </p>
+  </article>
+
+  <article class="rounded-3xl bg-zinc-900/70 border border-white/10 p-6 sm:p-7 hover-lift border-gradient before:rounded-3xl">
+    <div class="flex items-center gap-3">
+      <img class="h-9 w-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=320&amp;q=80" alt="">
+      <div>
+        <p class="text-xs font-medium text-white tracking-tight">
+          Farooq Ahmad
+        </p>
+        <p class="text-[11px] text-zinc-400">
+          Manager, Spice Route Café (Srinagar)
+        </p>
+      </div>
+      <div class="ml-auto text-[11px] text-emerald-300">
+        Mobile-first redesign
+      </div>
+    </div>
+    <p class="mt-4 text-sm text-zinc-300">
+      “As a local restaurant, we just wanted something simple but appealing. Cybanor nailed it! The site looks great on phones and has already brought in new customers”
+    </p>
+  </article>
+
+  <article class="rounded-3xl bg-zinc-900/70 border border-white/10 p-6 sm:p-7 hover-lift border-gradient before:rounded-3xl">
+    <div class="flex items-center gap-3">
+      <img class="h-9 w-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=320&amp;q=80" alt="">
+      <div>
+        <p class="text-xs font-medium text-white tracking-tight">
+          Arjun Sharma
+        </p>
+        <p class="text-[11px] text-zinc-400">
+          Founder, LearnEasy Classes (Amritsar)
+        </p>
+      </div>
+      <div class="ml-auto text-[11px] text-emerald-400">
+        5-day delivery
+      </div>
+    </div>
+    <p class="mt-4 text-sm text-zinc-300">
+      “I was worried about the cost, but Cybanor made it so affordable. They understood exactly what my online tuition business needed and delivered ahead of time.”
+    </p>
+  </article>
+
+  <article class="rounded-3xl bg-zinc-900/70 border border-white/10 p-6 sm:p-7 hover-lift border-gradient before:rounded-3xl">
+    <div class="flex items-center gap-3">
+      <img class="h-9 w-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=320&amp;q=80" alt="">
+      <div>
+        <p class="text-xs font-medium text-white tracking-tight">
+          Sana Mir
+        </p>
+        <p class="text-[11px] text-zinc-400">
+          Owner, Thread &amp; Trend Boutique (Srinagar)
+        </p>
+      </div>
+      <div class="ml-auto text-[11px] text-purple-300">
+        1‑week revamp
+      </div>
+    </div>
+    <p class="mt-4 text-sm text-zinc-300">
+      “Cybanor made the whole process so easy. I just shared my business details, and in a week my clothing store had a stylish, fully functional site.”
+    </p>
+  </article>
+
+  <article class="rounded-3xl bg-zinc-900/70 border border-white/10 p-6 sm:p-7 hover-lift border-gradient before:rounded-3xl">
+    <div class="flex items-center gap-3">
+      <img class="h-9 w-9 rounded-full object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="">
+      <div>
+        <p class="text-xs font-medium text-white tracking-tight">
+          Tariq Lone
+        </p>
+        <p class="text-[11px] text-zinc-400">
+          Partner, Lone Orchards (Shopian)
+        </p>
+      </div>
+      <div class="ml-auto text-[11px] text-emerald-300">
+        +40% inquiries
+      </div>
+    </div>
+    <p class="mt-4 text-sm text-zinc-300">
+      “Our apple orchard business finally has an online presence thanks to Cybanor. The website looks fresh, loads fast, and has already brought in bulk inquiries”
+    </p>
+  </article>
+</div>
+
+            <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-zinc-950 via-zinc-950/90 to-transparent pointer-events-none z-10"></div>
+            <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-zinc-950 via-zinc-950/90 to-transparent pointer-events-none z-10"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="z-10 sm:p-8 border-gradient before:rounded-3xl [animation:fadeSlideIn_0.8s_ease-out_0.3s_both] animate-on-scroll bg-zinc-950/60 w-full max-w-7xl border-white/10 border rounded-3xl mt-24 mr-auto ml-auto pt-6 pr-6 pb-8 pl-6 relative backdrop-blur" id="pricing">
+      <div class="flex gap-6 items-center sm:px-0 pr-1 pl-1">
+        <span class="inline-flex items-center gap-2 text-sm">
+          <span class="text-4xl font-medium text-zinc-100 tracking-tight">
+            Pricing
+          </span>
+        </span>
+        <span aria-hidden="true" role="separator" aria-orientation="vertical" class="w-px bg-white/10 h-10"></span>
+        <span class="text-sm text-zinc-400">
+          Transparent, fixed‑scope engagements
+        </span>
+      </div>
+      <div class="h-px bg-white/10 mt-4 mb-6"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+        <div class="rounded-3xl bg-zinc-900/70 border border-white/10 p-6 sm:p-7 flex flex-col justify-between border-gradient before:rounded-3xl">
+          <div class="">
+            <div class="flex items-center justify-between">
+              <div class="">
+                <p class="text-sm font-medium text-white tracking-tight">Starter Plan</p>
+                <p class="text-xs text-zinc-400 mt-1">Perfect for small businesses</p>
+              </div>
+              
+            </div>
+            <div class="mt-5">
+              <div class="flex items-baseline gap-1">
+                <span class="text-3xl font-medium text-white tracking-tight">₹4,999</span>
+                <span class="text-xs text-zinc-400">one‑time</span>
+              </div>
+              <ul class="mt-4 space-y-2 text-sm text-zinc-300">
+                <li class="" style="">• Up to 2 High Impact pages</li>
+                <li class="">• Mobile-friendly design</li>
+                <li class="">• Basic SEO setup</li>
+                <li class="">• 14‑day post‑launch support</li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-6">
+            <button type="button" class="button w-full justify-center">
+              <div class="points_wrapper">
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+              </div>
+              <span class="inner text-sm">
+                Choose Starter
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <div class="rounded-3xl bg-gradient-to-b from-emerald-500/10 via-zinc-900/80 to-zinc-900 border border-emerald-400/60 p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute inset-x-0 -top-10 h-24 bg-emerald-500/10 blur-3xl pointer-events-none"></div>
+          <div class="flex items-center justify-between relative z-10">
+            <div class="">
+              <p class="inline-flex items-center gap-2 text-sm font-medium text-white tracking-tight">
+                Growth Plan
+                <span class="text-[10px] uppercase tracking-[0.18em] text-emerald-300 bg-emerald-500/15 border border-emerald-400/40 rounded-full px-2 py-0.5">
+                  Most popular
+                </span>
+              </p>
+              <p class="text-xs text-zinc-300 mt-1">Best for growing brands and local services</p>
+            </div>
+          </div>
+          <div class="mt-5 relative z-10">
+            <div class="flex items-baseline gap-1">
+              <span class="text-3xl font-medium text-white tracking-tight">₹7,999</span>
+              <span class="text-xs text-zinc-300">one‑time</span>
+            </div>
+            <p class="text-[11px] text-emerald-300 mt-1">
+              Everything in Starter, plus more pages &amp; strategy.
+            </p>
+            <ul class="mt-4 space-y-2 text-sm text-zinc-100">
+              <li class="">• Up to 5 pages</li>
+              <li class="">• Customer inquiry setup</li>
+              <li class="">• Fast, responsive design</li>
+              <li class="">• 30-day post-launch support</li>
+              
+            </ul>
+          </div>
+          <div class="mt-6 relative z-10">
+            <button type="button" class="button w-full justify-center">
+              <div class="points_wrapper">
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+              </div>
+              <span class="inner text-sm">
+                Choose Growth
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7" class=""></path>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <div class="rounded-3xl bg-zinc-900/70 border border-white/10 p-6 sm:p-7 flex flex-col justify-between border-gradient before:rounded-3xl">
+          <div class="">
+            <div class="flex items-center justify-between">
+              <div class="">
+                <p class="text-sm font-medium text-white tracking-tight">Scale Plan</p>
+                <p class="text-xs text-zinc-400 mt-1">For e‑commerce &amp; ambitious launches</p>
+              </div>
+            </div>
+            <div class="mt-5">
+              <div class="flex items-baseline gap-1">
+                <span class="text-3xl font-medium text-white tracking-tight">From ₹9,999</span>
+                <span class="text-xs text-zinc-400">project‑based</span>
+              </div>
+              <ul class="text-sm text-zinc-300 mt-4 space-y-2">
+                <li class="">• Product pages &amp; simple checkout setup</li>
+                <li class="">• Payment gateway integration</li>
+                <li class="">• Mobile-optimized shopping experience</li>
+                <li class="">• Priority delivery &amp; support</li>
+                
+              </ul>
+            </div>
+          </div>
+          <div class="mt-6">
+            <button type="button" class="button w-full justify-center">
+              <div class="points_wrapper">
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+              </div>
+              <span class="inner text-sm">
+                Talk about Scale
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-xs text-zinc-500 max-w-3xl mt-6">Need something custom? Share your requirements and we’ll reach out within 24 hours — no obligation, no pushy sales.</p>
+    </section>
+
+    <section class="z-10 mt-20 mb-16">
+      <div class="sm:px-6 lg:pr-0 lg:pl-0 max-w-7xl mx-auto pr-0 pl-0">
+        <div class="overflow-hidden sm:p-10 flex flex-col md:flex-row bg-gradient-to-br from-zinc-900 via-zinc-900/90 to-black border-white/10 border rounded-3xl pt-6 pr-6 pb-6 pl-6 relative gap-x-8 gap-y-8 items-center">
+          <div class="flex-1">
+            <h2 class="sm:text-4xl text-3xl font-medium text-white tracking-tight">Ready to launch your website in a week?</h2>
+            <p class="sm:text-base text-sm text-zinc-300 max-w-xl mt-3">Tell us about your business in a short form and we’ll reach out with a simple plan, clear price, and launch date — usually within a few hours.</p>
+            <div class="mt-6 flex flex-wrap gap-4 items-center">
+              <button type="button" class="button">
+                <div class="points_wrapper">
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                </div>
+                <span class="inner">
+                  Fill 3‑minute brief
+                  <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </span>
+              </button>
+              <p class="text-xs text-zinc-400">
+                No long calls. No contracts. Just a clear proposal.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex-1 max-w-md w-full">
+            <form class="space-y-4">
+              <div class="">
+                <label for="name" class="block text-xs font-medium text-zinc-300 mb-1">
+                  Your name
+                </label>
+                <input type="text" placeholder="Shaun Micheals" class="placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-emerald-400/60 focus:border-transparent text-sm text-white bg-black/40 w-full border-white/10 border rounded-xl pt-2 pr-3 pb-2 pl-3" id="name">
+              </div>
+              <div class="">
+                <label for="email" class="block text-xs font-medium text-zinc-300 mb-1">
+                  Email or WhatsApp number
+                </label>
+                <input type="text" placeholder="you@example.com / +91‑XXXX‑XXX‑XXX" class="placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-emerald-400/60 focus:border-transparent text-sm text-white bg-black/40 w-full border-white/10 border rounded-xl pt-2 pr-3 pb-2 pl-3" id="email">
+              </div>
+              <div class="">
+                <label for="business" class="block text-xs font-medium text-zinc-300 mb-1">
+                  Business / brand name
+                </label>
+                <input id="business" type="text" placeholder="Sweet Valley Bakery" class="w-full rounded-xl border border-white/10 bg-black/40 px-3 py-2 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-emerald-400/60 focus:border-transparent">
+              </div>
+              <div class="">
+                <label for="plan" class="block text-xs font-medium text-zinc-300 mb-1">
+                  Preferred plan
+                </label>
+                <select id="plan" class="w-full rounded-xl border border-white/10 bg-black/40 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-400/60 focus:border-transparent">
+                  <option class="bg-zinc-900" value="starter">Starter (₹4,999)</option>
+                  <option class="bg-zinc-900" value="growth">Growth (₹7,999)</option>
+                  <option class="bg-zinc-900" value="scale">Scale (from ₹12,999)</option>
+                  <option class="bg-zinc-900" value="unsure">Not sure yet</option>
+                </select>
+              </div>
+              <div class="">
+                <label for="details" class="block text-xs font-medium text-zinc-300 mb-1">
+                  Anything else we should know?
+                </label>
+                <textarea id="details" rows="3" placeholder="Tell us about your business, goals, or any reference sites you like." class="w-full rounded-xl border border-white/10 bg-black/40 px-3 py-2 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-emerald-400/60 focus:border-transparent resize-none"></textarea>
+              </div>
+              <button type="submit" class="button w-full justify-center">
+                <div class="points_wrapper">
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                </div>
+                <span class="inner text-sm">
+                  Submit enquiry
+                  <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </span>
+              </button>
+              <p class="text-[11px] text-zinc-500 text-center">
+                We respond within 24 hours. Your details are kept private and never shared.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="border-t border-white/10 mt-16 pt-8 pb-10 bg-black/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center justify-center bg-center mix-blend-screen w-[40px] h-[48px] bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b50121cf-d4c2-4798-a91e-ff72cc31b864_1600w.png)] bg-cover rounded"></span>
+          <p class="text-xs text-zinc-500">
+            © <span id="year" class="">2025</span> Cybanor. All rights reserved.
+          </p>
+        </div>
+        <div class="flex items-center gap-4 text-xs text-zinc-500">
+          <a href="#features" class="hover:text-zinc-200 transition">Process</a>
+          <a href="#pricing" class="hover:text-zinc-200 transition">Pricing</a>
+          <a href="#testimonials" class="hover:text-zinc-200 transition">Testimonials</a>
+        </div>
+      </div>
+      <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+      </script>
+    </footer>
+  
+</body></html>
